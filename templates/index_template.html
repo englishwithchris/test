@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <script 
+      src="https://code.jquery.com/jquery-3.4.1.js" 
+      integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" 
+      crossorigin="anonymous"></script>    
+  </head>
+  <body>
+    <div id="target">
+      This text will be replaced
+    </div>
+    <input type="text" id="filter"></input>
+    <button id="load">Click me Alice</button>
+  </body>
+  <script>
+    $('#load').click(() => {
+      // Read the filter field to see if the user passed a filter
+      let filter = $("#filter").val();
+      let query = '/recipes';
+
+      if (filter.length > 0) {
+        query = `${query}?name=${filter}`
+      }
+
+      // Get the data
+      $.getJSON(query, (data) => {
+        $('#target').text(JSON.stringify(data));
+      });
+    });
+  </script>
+</html>
