@@ -19,6 +19,9 @@ function readFile(path) {
 }
 
 (async () => {
+  // Adds static files
+  app.use(express.static('public'))
+
   // Connect to mongodb
   let client = await MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true });
   let database = client.db(db);
